@@ -93,6 +93,22 @@ a
 </div>
 ````````````````````````````````
 
+Another test with inline notes:
+
+```````````````````````````````` example
+Here is an inline note.^[Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.]
+
+.
+<p>Here is an inline note.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. 
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p></li>
+</ol>
+</div>
+````````````````````````````````
+
 Another test with consecutive footnotes without a blank line separator:
 
 ```````````````````````````````` example

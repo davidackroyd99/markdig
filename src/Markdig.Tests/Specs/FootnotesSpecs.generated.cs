@@ -1,4 +1,4 @@
-// Generated: 2019-04-15 05:33:49
+// Generated: 2020-07-23 08:35:34
 
 // --------------------------------
 //             Footnotes
@@ -125,11 +125,36 @@ namespace Markdig.Tests.Specs.Footnotes
             TestParser.TestSpec("Here is a footnote[^1]. And another one[^2]. And a third one[^3]. And a fourth[^4].\n\n[^1]: Footnote 1 text\n\n[^2]: Footnote 2 text\n\na\n\n[^3]: Footnote 3 text\n\n[^4]: Footnote 4 text", "<p>Here is a footnote<a id=\"fnref:1\" href=\"#fn:1\" class=\"footnote-ref\"><sup>1</sup></a>. And another one<a id=\"fnref:2\" href=\"#fn:2\" class=\"footnote-ref\"><sup>2</sup></a>. And a third one<a id=\"fnref:3\" href=\"#fn:3\" class=\"footnote-ref\"><sup>3</sup></a>. And a fourth<a id=\"fnref:4\" href=\"#fn:4\" class=\"footnote-ref\"><sup>4</sup></a>.</p>\n<p>a</p>\n<div class=\"footnotes\">\n<hr />\n<ol>\n<li id=\"fn:1\">\n<p>Footnote 1 text<a href=\"#fnref:1\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:2\">\n<p>Footnote 2 text<a href=\"#fnref:2\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:3\">\n<p>Footnote 3 text<a href=\"#fnref:3\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:4\">\n<p>Footnote 4 text<a href=\"#fnref:4\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n</ol>\n</div>", "footnotes|advanced");
         }
 
-        // Another test with consecutive footnotes without a blank line separator:
+        // Another test with inline notes:
         [Test]
         public void ExtensionsFootnotes_Example003()
         {
             // Example 3
+            // Section: Extensions / Footnotes
+            //
+            // The following Markdown:
+            //     Here is an inline note.^[Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.]
+            //     
+            //
+            // Should be rendered as:
+            //     <p>Here is an inline note.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. 
+            //     <div class="footnotes">
+            //     <hr />
+            //     <ol>
+            //     <li id="fn:1">
+            //     <p>Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p></li>
+            //     </ol>
+            //     </div>
+
+            Console.WriteLine("Example 3\nSection Extensions / Footnotes\n");
+            TestParser.TestSpec("Here is an inline note.^[Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.]\n", "<p>Here is an inline note.<a id=\"fnref:1\" href=\"#fn:1\" class=\"footnote-ref\"><sup>1</sup></a>. \n<div class=\"footnotes\">\n<hr />\n<ol>\n<li id=\"fn:1\">\n<p>Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.<a href=\"#fnref:1\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n</ol>\n</div>", "footnotes|advanced");
+        }
+
+        // Another test with consecutive footnotes without a blank line separator:
+        [Test]
+        public void ExtensionsFootnotes_Example004()
+        {
+            // Example 4
             // Section: Extensions / Footnotes
             //
             // The following Markdown:
@@ -156,15 +181,15 @@ namespace Markdig.Tests.Specs.Footnotes
             //     </ol>
             //     </div>
 
-            Console.WriteLine("Example 3\nSection Extensions / Footnotes\n");
+            Console.WriteLine("Example 4\nSection Extensions / Footnotes\n");
             TestParser.TestSpec("Here is a footnote[^1]. And another one[^2]. And a third one[^3]. And a fourth[^4].\n\n[^1]: Footnote 1 text\n[^2]: Footnote 2 text\n[^3]: Footnote 3 text\n[^4]: Footnote 4 text", "<p>Here is a footnote<a id=\"fnref:1\" href=\"#fn:1\" class=\"footnote-ref\"><sup>1</sup></a>. And another one<a id=\"fnref:2\" href=\"#fn:2\" class=\"footnote-ref\"><sup>2</sup></a>. And a third one<a id=\"fnref:3\" href=\"#fn:3\" class=\"footnote-ref\"><sup>3</sup></a>. And a fourth<a id=\"fnref:4\" href=\"#fn:4\" class=\"footnote-ref\"><sup>4</sup></a>.</p>\n<div class=\"footnotes\">\n<hr />\n<ol>\n<li id=\"fn:1\">\n<p>Footnote 1 text<a href=\"#fnref:1\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:2\">\n<p>Footnote 2 text<a href=\"#fnref:2\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:3\">\n<p>Footnote 3 text<a href=\"#fnref:3\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n<li id=\"fn:4\">\n<p>Footnote 4 text<a href=\"#fnref:4\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n</ol>\n</div>", "footnotes|advanced");
         }
 
         // A footnote link inside a list should work as well:
         [Test]
-        public void ExtensionsFootnotes_Example004()
+        public void ExtensionsFootnotes_Example005()
         {
-            // Example 4
+            // Example 5
             // Section: Extensions / Footnotes
             //
             // The following Markdown:
@@ -186,7 +211,7 @@ namespace Markdig.Tests.Specs.Footnotes
             //     </ol>
             //     </div>
 
-            Console.WriteLine("Example 4\nSection Extensions / Footnotes\n");
+            Console.WriteLine("Example 5\nSection Extensions / Footnotes\n");
             TestParser.TestSpec("- abc\n- def[^1]\n\n[^1]: Here is the footnote.", "<ul>\n<li>abc</li>\n<li>def<a id=\"fnref:1\" href=\"#fn:1\" class=\"footnote-ref\"><sup>1</sup></a></li>\n</ul>\n<div class=\"footnotes\">\n<hr />\n<ol>\n<li id=\"fn:1\">\n<p>Here is the footnote.<a href=\"#fnref:1\" class=\"footnote-back-ref\">&#8617;</a></p></li>\n</ol>\n</div>", "footnotes|advanced");
         }
     }
