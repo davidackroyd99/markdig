@@ -19,6 +19,12 @@ namespace Markdig.Extensions.Footnotes
                 // Insert the parser before any other parsers
                 pipeline.BlockParsers.Insert(0, new FootnoteParser());
             }
+
+            if (!pipeline.InlineParsers.Contains<FootnoteInlineParser>())
+            {
+                // Insert the parser before any other parsers
+                pipeline.InlineParsers.Insert(0, new FootnoteInlineParser());
+            }
         }
 
         public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
